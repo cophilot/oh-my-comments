@@ -1,5 +1,3 @@
-test
-
 <div align="center">
   <br />
   <!-- <img src="" alt="oh-my-commentsLogo" width="30%"/> -->
