@@ -1,1 +1,6 @@
 #!/bin/bash
+echo ""
+echo " **********************"
+echo " *** oh-my-comments ***"
+echo " **********************"
+echo ""
