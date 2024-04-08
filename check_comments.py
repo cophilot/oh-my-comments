@@ -4,13 +4,17 @@ This script checks for missing comments in your project.
 
 import os
 
-DIRECTORY = ["./src"]
+### ENV-START ###
 
-FILE_TYPES = ["rs"]
+DIRECTORY = ["src"]
 
-KEYWORDS = ["fn", "struct"]
+FILE_TYPES = ["ts", "tsx"]
+
+KEYWORDS = ["function", "interface"]
 
 IGNORE_LINES = ["//", "/*", "*/", "*"]
+
+### ENV-END ###
 
 def main():
     """

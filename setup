@@ -4,3 +4,57 @@ echo " **********************"
 echo " *** oh-my-comments ***"
 echo " **********************"
 echo ""
+
+echo "Please enter the following information to setup oh-my-comments"
+echo "You can provide a comma separated list for each question"
+echo ""
+
+read -p "Enter the path to your project (src): " project_path
+
+if [ -z "$project_path" ]; then
+    project_path="src"
+fi
+
+read -p "Enter the file extensions you want to include (ts,tsx): " file_extensions
+
+if [ -z "$file_extensions" ]; then
+    file_extensions="ts,tsx"
+fi
+
+read -p "Enter the keywords that should be commented (function,interface): " keywords
+
+if [ -z "$keywords" ]; then
+    keywords="function,interface"
+fi
+
+read -p "Enter prefix for lines that are ignored (//,/*,*/,*): " ignore_prefix
+
+if [ -z "$ignore_prefix" ]; then
+    ignore_prefix="//,/*,*/,*"
+fi
+
+read -p "Enter the installation path for oh-my-comments (default: ./scripts): " installation_path
+
+if [ -z "$installation_path" ]; then
+    installation_path="./scripts"
+fi
+
+function convert_to_array() {
+    IFS=',' read -r -a array <<< "$1"
+    result="["
+    for element in "${array[@]}"
+    do
+        result="$result\"$element\","
+    done
+    result="${result::-1}]"
+    echo $result
+}
+
+code_block="DIRECTORY = $(convert_to_array "$project_path")"
+code_block="$code_block\nFILE_TYPES = $(convert_to_array "$file_extensions")"
+code_block="$code_block\nKEYWORDS = $(convert_to_array "$keywords")"
+code_block="$code_block\nIGNORE_LINES = $(convert_to_array "$ignore_prefix")"
+
+echo $code_block
+
+echo -e $code_block > .env
