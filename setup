@@ -33,10 +33,18 @@ if [ -z "$ignore_prefix" ]; then
     ignore_prefix="//,/*,*/,*"
 fi
 
-read -p "Enter the installation path for oh-my-comments (default: ./scripts): " installation_path
+read -p "Enter the installation path for oh-my-comments (./scripts): " installation_path
 
 if [ -z "$installation_path" ]; then
     installation_path="./scripts"
+fi
+
+read -p "Add script wrapper (Y/n) ? " script_wrapper
+
+if [ "$script_wrapper" == "n" ] || [ "$script_wrapper" == "N" ]; then
+    script_wrapper=false
+else
+    script_wrapper=true
 fi
 
 function convert_to_array() {
@@ -55,6 +63,39 @@ code_block="$code_block\nFILE_TYPES = $(convert_to_array "$file_extensions")"
 code_block="$code_block\nKEYWORDS = $(convert_to_array "$keywords")"
 code_block="$code_block\nIGNORE_LINES = $(convert_to_array "$ignore_prefix")"
 
-echo $code_block
+text=$(curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/check_comments.py)
+new_text=""
 
-echo -e $code_block > .env
+# split text into lines
+IFS=$'\n' lines=($text)
+
+ignore_line=false
+
+for line in "${lines[@]}"; do
+    if [[ $line == *"### ENV-START ###"* ]]; then
+        ignore_line=true
+        new_text="$new_text\n$code_block\n\n"
+    elif [[ $line == *"### ENV-END ###"* ]]; then
+        ignore_line=false
+    elif [ "$ignore_line" = false ]; then
+        new_text="$new_text$line\n"
+    fi
+done
+
+mkdir -p $installation_path
+cd $installation_path
+
+if [ "$script_wrapper" = true ]; then
+    echo -e "#!/bin/bash\n\npython3 $installation_path/py/check_comments.py" > check_comments.sh
+    chmod +x check_comments.sh
+    mkdir -p py
+    cd py
+fi
+
+touch check_comments.py
+echo -e "$new_text" > check_comments.py
+
+echo ""
+echo "oh-my-comments has been successfully setup"
+echo "You can now run the script by executing the following command"
+echo ""

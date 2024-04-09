@@ -7,11 +7,8 @@ import os
 ### ENV-START ###
 
 DIRECTORY = ["src"]
-
 FILE_TYPES = ["ts", "tsx"]
-
 KEYWORDS = ["function", "interface"]
-
 IGNORE_LINES = ["//", "/*", "*/", "*"]
 
 ### ENV-END ###
