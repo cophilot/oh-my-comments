@@ -25,22 +25,16 @@
 
 ---
 
-* [Bugs](#bugs)
-* [Release Notes](#release-notes)
+-   [Bugs](#bugs)
+-   [Release Notes](#release-notes)
 
 ---
 
-## Bugs
+## Installation
 
-* *no known bugs*
-
----
-
-## [Release Notes](https://github.com/cophilot/oh-my-comments/blob/master/CHANGELOG.md)
-
-### [v0.0.1](https://github.com/cophilot/oh-my-comments/tree/0.0.1)
-
-* *Initial release*
+```bash
+curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/setup | bash -s
+```
 
 ---
 
