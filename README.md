@@ -39,13 +39,13 @@ source <(curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/
 ### npm
 
 ```bash
-npm run comments:check
+npm run comment:check
 ```
 
 ### pnpm
 
 ```bash
-pnpm run comments:check
+pnpm run comment:check
 ```
 
 ---

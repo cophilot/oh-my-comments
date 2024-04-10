@@ -78,7 +78,7 @@ function convert_to_array() {
 code_block="DIRECTORY = $(convert_to_array "$project_path")"
 code_block="$code_block\nFILE_TYPES = $(convert_to_array "$file_extensions")"
 code_block="$code_block\nKEYWORDS = $(convert_to_array "$keywords")"
-code_block="$code_block\COMMENT = $(convert_to_array "$comment_chars")"
+code_block="$code_block\nCOMMENT = $(convert_to_array "$comment_chars")"
 
 text=$(curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/check_comments.py)
 new_text=""
@@ -126,7 +126,7 @@ if [ "$add_package_json" = true ]; then
     # add npm script to package.json
     if [ -f "package.json" ]; then
         echo "Adding script to package.json"
-        sed -i '/"scripts": {/a \ \ \ \ "comments:check": "$command",' package.json
+        sed -i '/"scripts": {/a \ \ \ \ "comments:check": "'$command'",' package.json
     else
         echo "package.json file not found"
     fi
