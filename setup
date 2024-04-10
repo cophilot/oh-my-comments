@@ -51,7 +51,7 @@ fi
 
 # check if package.json file exists
 add_package_json=false
-if [ ! "package.json" ]; then
+if [ -f "package.json" ]; then
     read -p "Add script to package.json (Y/n) ?" add_to_package_json_input
     if [ "$add_to_package_json_input" == "n" ] || [ "$add_to_package_json_input" == "N" ]; then
         echo "No"
