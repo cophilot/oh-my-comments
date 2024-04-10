@@ -108,10 +108,15 @@ def check_file(file) -> int:
             line_before = ""
             if i != 0:
                 line_before = lines[i - 1]
+            found_comment = False
             for comment in COMMENT:
-                if  comment not in line_before:
-                    error_count += 1
-                    print_error(file, i + 1)
+                if  comment in line_before:
+                    found_comment = True
+
+            if found_comment:
+                error_count += 1
+                print_error(file, i + 1)
+
     return error_count
 
 def print_error(file, line):
