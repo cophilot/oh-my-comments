@@ -49,6 +49,21 @@ else
     script_wrapper=true
 fi
 
+# check if package.json file exists
+add_package_json=false
+if [ ! "package.json" ]; then
+    read -p "Add script to package.json (Y/n) ?" add_to_package_json_input
+    if [ "$add_to_package_json_input" == "n" ] || [ "$add_to_package_json_input" == "N" ]; then
+        echo "No"
+        add_package_json=false
+    else
+        echo "Yes"
+        add_package_json=true
+    fi
+fi
+
+
+
 function convert_to_array() {
     IFS=',' read -r -a array <<< "$1"
     result="["
@@ -101,6 +116,20 @@ cd ..
 
 if [ "$script_wrapper" = true ]; then
     cd ..
+fi
+
+if [ "$add_package_json" = true ]; then
+    command="python3 $installation_path/py/check_comments.py"
+    if [ "$script_wrapper" = true ]; then
+        command="$installation_path/check_comments.sh"
+    fi
+    # add npm script to package.json
+    if [ -f "package.json" ]; then
+        echo "Adding script to package.json"
+        sed -i '/"scripts": {/a \ \ \ \ "comments:check": "$command",' package.json
+    else
+        echo "package.json file not found"
+    fi
 fi
 
 echo ""
