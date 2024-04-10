@@ -75,7 +75,7 @@ def check_file(file) -> int:
         return 0
 
     error_count = 0
-    
+
     with open(file, "r", encoding="utf-8") as f:
 
         lines = f.readlines()
@@ -113,7 +113,7 @@ def check_file(file) -> int:
                 if  comment in line_before:
                     found_comment = True
 
-            if found_comment:
+            if not found_comment:
                 error_count += 1
                 print_error(file, i + 1)
 
