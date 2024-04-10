@@ -3,7 +3,7 @@
   <!-- <img src="" alt="oh-my-commentsLogo" width="30%"/> -->
   <h1>oh-my-comments</h1>
   <p>
-     Description
+  description
   </p>
 </div>
 

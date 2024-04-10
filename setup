@@ -126,7 +126,7 @@ if [ "$add_package_json" = true ]; then
     # add npm script to package.json
     if [ -f "package.json" ]; then
         echo "Adding script to package.json"
-        sed -i '/"scripts": {/a \ \ \ \ "comments:check": "'$command'",' package.json
+        sed -i '/"scripts": {/a \ \ \ \     "comment:check": "'$command'",' package.json
     else
         echo "package.json file not found"
     fi
