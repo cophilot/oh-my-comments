@@ -25,15 +25,18 @@
 
 ---
 
--   [Bugs](#bugs)
--   [Release Notes](#release-notes)
-
----
-
 ## Installation
 
 ```bash
-curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/setup | bash -s
+source <(curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/setup)
+```
+
+---
+
+## Usage
+
+```bash
+./scripts/check_comments.sh
 ```
 
 ---

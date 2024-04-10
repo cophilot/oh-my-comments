@@ -6,7 +6,7 @@ echo " **********************"
 echo ""
 
 echo "Please enter the following information to setup oh-my-comments"
-echo "You can provide a comma separated list for each question"
+echo "You can provide a comma separated list for each question..."
 echo ""
 
 read -p "Enter the path to your project (src): " project_path
@@ -39,11 +39,13 @@ if [ -z "$installation_path" ]; then
     installation_path="./scripts"
 fi
 
-read -p "Add script wrapper (Y/n) ? " script_wrapper
+read -p "Add script wrapper (Y/n) ?" script_wrapper
 
 if [ "$script_wrapper" == "n" ] || [ "$script_wrapper" == "N" ]; then
+    echo "No"
     script_wrapper=false
 else
+    echo "Yes"
     script_wrapper=true
 fi
 
@@ -94,6 +96,12 @@ fi
 
 touch check_comments.py
 echo -e "$new_text" > check_comments.py
+
+cd ..
+
+if [ "$script_wrapper" = true ]; then
+    cd ..
+fi
 
 echo ""
 echo "oh-my-comments has been successfully setup"
