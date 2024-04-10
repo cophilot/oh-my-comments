@@ -1,0 +1,2 @@
+// check
+function add() {}

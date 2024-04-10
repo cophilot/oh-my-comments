@@ -9,7 +9,7 @@ import os
 DIRECTORY = ["src"]
 FILE_TYPES = ["ts", "tsx"]
 KEYWORDS = ["function", "interface"]
-IGNORE_LINES = ["//", "/*", "*/", "*"]
+COMMENT = ["//", "/*", "*/", "*"]
 
 ### ENV-END ###
 
@@ -85,7 +85,7 @@ def check_file(file) -> int:
             fline = line.strip()
 
             ignore_line = False
-            for ignore in IGNORE_LINES:
+            for ignore in COMMENT:
                 if fline.startswith(ignore):
                     ignore_line = True
                     break
@@ -108,10 +108,10 @@ def check_file(file) -> int:
             line_before = ""
             if i != 0:
                 line_before = lines[i - 1]
-
-            if  "///" not in line_before:
-                error_count += 1
-                print_error(file, i + 1)
+            for comment in COMMENT:
+                if  comment not in line_before:
+                    error_count += 1
+                    print_error(file, i + 1)
     return error_count
 
 def print_error(file, line):

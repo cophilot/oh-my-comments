@@ -9,9 +9,6 @@
 
 <!-- Badges -->
 <div align="center">
-   <a href="https://github.com/cophilot/oh-my-comments/releases">
-       <img src="https://img.shields.io/github/v/release/cophilot/oh-my-comments?display_name=tag" alt="current realease" />
-   </a>
    <a href="https://github.com/cophilot/oh-my-comments/blob/master/LICENSE">
        <img src="https://img.shields.io/github/license/cophilot/oh-my-comments" alt="license" />
    </a>
@@ -37,6 +34,18 @@ source <(curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/
 
 ```bash
 ./scripts/check_comments.sh
+```
+
+### npm
+
+```bash
+npm run comments:check
+```
+
+### pnpm
+
+```bash
+pnpm run comments:check
 ```
 
 ---

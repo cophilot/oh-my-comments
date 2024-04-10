@@ -27,10 +27,10 @@ if [ -z "$keywords" ]; then
     keywords="function,interface"
 fi
 
-read -p "Enter prefix for lines that are ignored (//,/*,*/,*): " ignore_prefix
+read -p "Enter the characters used for comments (//,/*,*/,*): " comment_chars
 
-if [ -z "$ignore_prefix" ]; then
-    ignore_prefix="//,/*,*/,*"
+if [ -z "$comment_chars" ]; then
+    comment_chars="//,/*,*/,*"
 fi
 
 read -p "Enter the installation path for oh-my-comments (./scripts): " installation_path
@@ -78,7 +78,7 @@ function convert_to_array() {
 code_block="DIRECTORY = $(convert_to_array "$project_path")"
 code_block="$code_block\nFILE_TYPES = $(convert_to_array "$file_extensions")"
 code_block="$code_block\nKEYWORDS = $(convert_to_array "$keywords")"
-code_block="$code_block\nIGNORE_LINES = $(convert_to_array "$ignore_prefix")"
+code_block="$code_block\COMMENT = $(convert_to_array "$comment_chars")"
 
 text=$(curl -s https://raw.githubusercontent.com/cophilot/oh-my-comments/main/check_comments.py)
 new_text=""
